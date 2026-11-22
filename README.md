@@ -19,7 +19,7 @@ The app needs SvelteKit or Vite with Svelte 5, `tailwindcss`, and
 `@tailwindcss/vite`. Depend on a tagged release tarball, which installs without Git:
 
 ```json
-"jww-svelte-toolkit": "https://github.com/justin/jww-svelte-toolkit/archive/refs/tags/v0.1.0.tar.gz"
+"jww-svelte-toolkit": "https://github.com/justin/jww-svelte-toolkit/archive/refs/tags/0.1.0.tar.gz"
 ```
 
 Import the theme once, in the root layout or the app's own stylesheet:
