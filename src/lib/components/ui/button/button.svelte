@@ -38,10 +38,14 @@
 		WithElementRef<HTMLAnchorAttributes> & {
 			variant?: ButtonVariant;
 			size?: ButtonSize;
+			busy?: boolean;
+			busyLabel?: string;
 		};
 </script>
 
 <script lang="ts">
+	import { Spinner } from "#lib/components/ui/spinner/index.js";
+
 	let {
 		class: className,
 		variant = "default",
@@ -50,23 +54,38 @@
 		href = undefined,
 		type = "button",
 		disabled,
+		busy = false,
+		busyLabel,
 		children,
 		...restProps
 	}: ButtonProps = $props();
 </script>
+
+{#snippet content()}
+	{#if busy}
+		<Spinner data-icon="inline-start" aria-hidden="true" />
+	{/if}
+	{#if busy && busyLabel !== undefined}
+		{busyLabel}
+	{:else}
+		{@render children?.()}
+	{/if}
+{/snippet}
 
 {#if href}
 	<a
 		bind:this={ref}
 		data-slot="button"
 		class={cn(buttonVariants({ variant, size }), className)}
-		href={disabled ? undefined : href}
-		aria-disabled={disabled}
-		role={disabled ? "link" : undefined}
-		tabindex={disabled ? -1 : undefined}
+		href={disabled || busy ? undefined : href}
+		aria-disabled={busy || disabled}
+		role={disabled || busy ? "link" : undefined}
+		tabindex={disabled || busy ? -1 : undefined}
+		aria-busy={busy || undefined}
 		{...restProps}
+		onclick={busy ? (event) => event.preventDefault() : restProps.onclick}
 	>
-		{@render children?.()}
+		{@render content()}
 	</a>
 {:else}
 	<button
@@ -74,9 +93,10 @@
 		data-slot="button"
 		class={cn(buttonVariants({ variant, size }), className)}
 		{type}
-		{disabled}
+		disabled={busy || disabled}
+		aria-busy={busy || undefined}
 		{...restProps}
 	>
-		{@render children?.()}
+		{@render content()}
 	</button>
 {/if}

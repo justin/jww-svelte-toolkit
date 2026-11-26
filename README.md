@@ -46,6 +46,14 @@ Then use the primitives:
 To change a token for one app, redefine it after the import:
 `:root { --primary: ...; }`.
 
+Pass `busy` to a Button to disable activation and show a spinner. An optional
+`busyLabel` replaces the children while busy. Without it, the children stay
+visible beside the spinner.
+
+Alert.Root supports a `warning` variant. Alerts have a dismiss button by
+default. Pass `dismissible={false}` for persistent messages and set `role` to
+match how the message should be announced.
+
 ## Changing primitives
 
 The primitives come from the shadcn-svelte registry, and some carry local
