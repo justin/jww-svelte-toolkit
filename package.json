@@ -5,7 +5,9 @@
   "license": "MIT",
   "private": true,
   "type": "module",
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     "./theme.css": "./src/lib/theme.css",
     "./utils": {
@@ -45,5 +47,8 @@
   "peerDependencies": {
     "svelte": "^5.57.0",
     "tailwindcss": "^4.3.0"
-  }
+  },
+  "files": [
+    "src"
+  ]
 }

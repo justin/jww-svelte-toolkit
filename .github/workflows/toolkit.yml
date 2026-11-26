@@ -1,0 +1,32 @@
+name: Toolkit CI
+on:
+  pull_request:
+  push:
+    tags: ['[0-9]*.[0-9]*.[0-9]*']
+permissions:
+  contents: read
+concurrency:
+  group: toolkit-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  toolkit:
+    name: Toolkit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: tests/consumer
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: tests/consumer/package-lock.json
+      - name: Check release tag
+        if: github.ref_type == 'tag'
+        run: test "$GITHUB_REF_NAME" = "$(node -p "require('../../package.json').version")"
+      - run: npm ci --no-audit --no-fund
+      - run: npm run check
+      - run: npm test
+      - run: npm run build

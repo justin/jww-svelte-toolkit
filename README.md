@@ -63,5 +63,7 @@ survive, tag a release, and bump the tarball URL in each app.
 
 Dependabot doesn't track the tarball URL, so those bumps are manual.
 
-There's no test suite here. To validate a change, install it into an app and
-run that app's check, test, and build.
+Run `npm ci && npm run check && npm test && npm run build` in
+`tests/consumer` to exercise the packaged library with Node 24. The fixture's
+`.npmrc` tells npm to pack and install the local dependency. Update its lockfile
+when changing package dependencies. CI runs these checks on PRs and version tags.
