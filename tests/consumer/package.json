@@ -1,0 +1,24 @@
+{
+  "name": "toolkit-consumer-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test": "vitest run",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "jww-svelte-toolkit": "file:../..",
+    "svelte": "^5.58.1",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "jsdom": "^29.0.0",
+    "svelte-check": "^4.7.6",
+    "typescript": "~6.0.0",
+    "vite": "^8.3.8",
+    "vitest": "^4.1.11"
+  }
+}
