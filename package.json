@@ -1,6 +1,6 @@
 {
   "name": "jww-svelte-toolkit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Shared Svelte theme and UI primitives for Justin's web apps.",
   "license": "MIT",
   "private": true,

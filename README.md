@@ -25,7 +25,7 @@ Depend on a release tarball. It installs without Git, which keeps Docker
 builds simple:
 
 ```json
-"jww-svelte-toolkit": "https://github.com/justin/jww-svelte-toolkit/archive/refs/tags/0.1.0.tar.gz"
+"jww-svelte-toolkit": "https://github.com/justin/jww-svelte-toolkit/archive/refs/tags/0.2.0.tar.gz"
 ```
 
 Import the theme once, in your root layout or stylesheet:
